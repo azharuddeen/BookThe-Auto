@@ -1,0 +1,59 @@
+package Selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import javax.xml.xpath.XPath;
+
+public class Book {
+
+    public static void main(String[] args)
+    {
+
+        Book read= new Book();
+        read.Running();
+    }
+    public void Running() {
+        System.setProperty("web.chrome.driver", "chromedriver.exe");
+        WebDriver chrome = new ChromeDriver();
+        chrome.get("http://book.theautomatedtester.co.uk/");
+        //HeaderText
+        WebElement headerText = chrome.findElement(By.xpath("//div[@class='mainheading']"));
+        boolean headerValidation = headerText.isDisplayed();
+        System.out.println("Title: "+headerValidation);
+        //Chapter1
+        WebElement chapter1 = chrome.findElement(By.xpath("//a[@href='/chapter1']"));
+        chapter1.click();
+        WebElement paragraph = chrome.findElement(By.xpath("//div[@class='mainbody']//p[1]"));
+        boolean paragraph1Validation = paragraph.isDisplayed();
+        System.out.println("Paragraph: "+paragraph1Validation);
+        WebElement radio = chrome.findElement(By.xpath("//input[@type='radio']"));
+        radio.click();
+        boolean r = radio.isSelected();
+        System.out.println("Radio Button:" + r);
+        WebElement checkbox= chrome.findElement(By.xpath("//input[@name='selected(1234)']"));
+        checkbox.click();
+        boolean check=checkbox.isSelected();
+        System.out.println("checkbox: "+check);
+        WebElement text= chrome.findElement(By.xpath("//div[@id='divontheleft']"));
+        boolean textvalidation= text.isDisplayed();
+        System.out.println("Text:" + textvalidation);
+        WebElement verifybutton= chrome.findElement(By.xpath("//input[@id='verifybutton']"));
+        verifybutton.click();
+        boolean verifyvalidation= verifybutton.isEnabled();
+        System.out.println("VerifyButton: "+ verifyvalidation);
+        //WebElement link1= chrome.findElement(By.xpath("//div[@class='multiplewindow']"));
+        WebElement textbox= chrome.findElement(By.xpath("//div[@id='html5div']"));
+        textbox.sendKeys("enter the keys");
+        boolean Textvalidation= textbox.isDisplayed();
+        System.out.println("TextBox: "+ Textvalidation);
+        //WebElement homepage= chrome.findElement(By.xpath("//a[@href='/']"));
+        //homepage.click();
+        chrome.close();
+
+
+    }
+}
+
